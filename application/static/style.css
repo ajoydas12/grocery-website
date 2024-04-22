@@ -1,0 +1,109 @@
+.center-contents {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.rectangle-plus {
+    position: fixed;
+    height: 40px;
+    width: 70px;
+    background-color: #1d1d1e;
+    color: #5b4242;
+    text-align: center;
+    line-height: 40px;
+    bottom: 20px;
+    right: 20px;
+    text-decoration: none;
+    border-radius: 7px;
+}
+
+.plus {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    color: #3e3e5b;
+    transform: translate(-120%, -70%);
+    font-size: 64px;
+}
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-label {
+    width: 120px;
+    margin-right: 10px;
+    text-align: right;
+}
+
+.form-input {
+    flex: 1;
+    max-width: 292px;
+}
+
+.form-btn {
+    text-align: right;
+    margin-top: 23px;
+    
+    /* width: 76px; */
+}
+
+.circle_add {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #edc2c2;
+    position: relative;
+    text-decoration: none;
+}
+.plus_product {
+    position: absolute;
+    top: -37px;
+    left: 18px;
+    width: 10px;
+    height: 40px;
+    font-size: 100px;
+    color: rgb(44, 176, 44);
+
+    /* background-color: #333; */
+    /* transform: rotate(45deg); */
+}
+/* for card styling */
+
+/* Styles for the container and grid layout */
+.container {
+    max-width: 1200px; /* Set the maximum width of the container */
+    margin: 0 auto; /* Center the container */
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+/* Card styles */
+.card {
+    height: 308px;
+    width: 100%;
+}
+
+.inside_plus_product{
+    font-size: xx-small; 
+    margin: 0; text-align: center; 
+    justify-content: center; 
+    color: rgb(44, 176, 44); 
+    margin-top: 17px;
+    text-decoration: none;
+}

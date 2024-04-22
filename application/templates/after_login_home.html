@@ -1,0 +1,79 @@
+
+
+{% extends 'after_login_navbar.html' %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="row justify-content-center mt-3">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-5">
+        {% for category, message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endwith %} 
+    <div class="container-fluid">
+        <div class="row mt-4">
+            {% for category in category_product_display %}
+                <div class="col-12" style="min-height: 50px;"><br>
+                    <h4>{{ category }}</h4><hr>
+                    <!-- Add the scrollable-container class to wrap the products -->
+                    <div class="product scrollable-container">
+                        {% for product in category_product_display[category] %}
+                          {% if product.quantity >0 %}
+                            <div class="card product-card mx-2" style="min-width: 18rem;">
+                                <!-- Your product card content -->
+                                <div class="card-header" style="text-align: center;">
+                                    <b>{{ product.name }}</b>
+                                </div>
+                                <div class="card-body" style="text-align: center;">
+                                    <p>Total quentity : {{ product.quantity }}</p>
+                                    <div class="d-flex justify-content-around mt-3">
+                                        <p>Price : {{ product.price }}/{{ product.unit }}</p>
+
+                                       
+                                        <a href="{{url_for('get_product_using_id', id = product.id)}}" class="btn btn-success">Buy</a>
+                                        <img src="{{url_for('static', filename = 'image/cart.jpg' )}}" height="37 px" width="50px">
+                                        <!-- <a href="{{url_for('homepage')}}" class="btn btn-primary">Cart</a> -->
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="card product-card mx-2" style="min-width: 18rem;">
+                               <!-- Your product card content -->
+                               <div class="card-header" style="text-align: center;">
+                                   <b>{{ product.name }}</b>
+                               </div>
+                               <div class="card-body" style="text-align: center;">
+                                   <!-- <p>Total quentity : {{ product.quantity }}</p> -->
+                                   <div class="d-flex justify-content-around mt-3">
+                                       <!-- <p>Price : {{ product.price }}/{{ product.unit }}</p> -->
+                                       <div class="rectangle_box_button" style="color: red;">Out of stock</div>
+                                       
+                                       <!-- <a href="{{url_for('user_login')}}" class="btn btn-success">Add</a>
+                                       <img src="" alt=""> -->
+                                       <img src="{{url_for('static', filename = 'image/cart.jpg' )}}" height="37 px" width="50px">
+   
+                                   </div>
+                                   
+                               </div>
+                           </div>
+                           {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+{% endblock %}
+

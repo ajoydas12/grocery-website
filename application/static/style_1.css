@@ -1,0 +1,86 @@
+.rectangle_box {
+    height: 168px;
+    width: 187px;
+    background-color: #f2e4e4;
+    border-radius: 10px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.rectangle_box_buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
+}
+
+.rectangle_box_button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.rectangle_box_button.edit {
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 3px;
+}
+
+.rectangle_box_button.delete {
+    background-color: #dc3545;
+    color: white;
+    margin-left: 8px;
+    margin-bottom: 3px;
+    text-decoration: none;
+}
+b{
+    text-align: center;
+    justify-content: center;
+    margin-top: -13px;
+    margin-left: 0px;
+}
+.rectangle-plus {
+    position: fixed;
+    height: 40px;
+    width: 70px;
+    background-color: #1d1d1e;
+    color: #7e5353;
+    text-align: center;
+    line-height: 40px;
+    bottom: 20px;
+    right: 20px;
+    text-decoration: none;
+    border-radius: 7px;
+}
+
+.plus {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    color: #3e3e5b;
+    transform: translate(-120%, -70%);
+    font-size: 64px;
+}
+
+.username-text {
+    color: rgb(36, 153, 36);
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+
+.product-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 26px;
+}
+.card-body{
+    height: 267px;
+    text-align: center;
+}
+
+

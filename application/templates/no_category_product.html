@@ -1,0 +1,22 @@
+
+{% extends 'admin_base.html'%}
+{% block content %}
+    
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-12 center-contents text-center">
+                <h3>No Categories or products created</h3>
+            </div>
+        </div>
+    </div>
+
+    <a href="{{url_for('add_category')}}" class="rectangle-plus">
+        <span class="plus">+</span>
+    </a>
+    
+
+{% endblock %}
+
+ 
+
+

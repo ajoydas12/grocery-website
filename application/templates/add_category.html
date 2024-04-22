@@ -1,0 +1,76 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+
+{% if categories %}
+    <div class="container-fluid">
+        <div class="row mt-4">
+            {% for category in categories %}
+            <div class=" col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100" style="height: 308px; width: 217px; border-radius: 18px;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center;">{{category.name}}</h5>
+                        <div class="d-flex justify-content-center align-items-center" style="height: 168px;">
+                            <!-- <p>No product created</p> -->
+                            <a href="{{url_for('product', id = category.id)}}" class="circle_add" >
+                                <p class="inside_plus_product">Click ADD Product:</p>
+                                <span class="plus_product">+</span>
+                            </a>
+                        </div>
+                        <div class="d-flex justify-content-around mt-3">
+                            <a href="{{ url_for('update_category', id=category.id) }}" class="btn btn-primary">Edits</a>
+                            
+                            <a href="{{ url_for('delete_category', id=category.id) }}" class="btn btn-danger" onclick="return confirm('Are you sure, you want to delete {{category.name}} category?')">Delete</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <a href="{{url_for('add_category')}}" class="rectangle-plus">
+        <span class="plus">+</span>
+    </a>
+
+{% else %}
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-12">
+                <h3>Creating a New Category</h3>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <form action="{{ url_for('add_category') }}" method="POST" style="width: 533px;">
+                <div class="form-group">
+                    <label for="categoryName" class="form-label">Category Name:</label>
+                    <input type="text" class="form-control form-input" id="categoryName" name="categoryName" required>
+                </div>
+                <div class="form-btn">
+                    <button type="submit" class="btn btn-primary" style="width: 69px;">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endif %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="row justify-content-center mt-3">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-lg-5">
+            {% for category, message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% endwith %}
+
+{% endblock %}
+
+

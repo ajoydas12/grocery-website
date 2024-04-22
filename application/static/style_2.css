@@ -1,0 +1,55 @@
+
+.username-text {
+    color: rgb(36, 153, 36);
+}
+.product {
+    width: 98%;
+}
+
+.product ::-webkit-scrollbar {
+    width: 0px;
+}
+
+.scrollable-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    overscroll-behavior-inline: contain;
+}
+
+.rectangle_box_button.delete{
+    text-decoration: none;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.card-body{
+    height: 134px;
+    text-align: center;
+}
+
+.product-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 26px;
+    }
+
+.total-price {
+        position: fixed;
+        bottom: 10px;
+        left: 16px;
+        /* border: 3px solid rgb(30, 158, 102); */
+       
+        /* padding: 14px 26px 7px 27px; */
+        border-radius: 4px;
+        /* background-color: rgb(38, 154, 104);
+        color: aliceblue; */
+    
+    }
+.total-btn {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+    }

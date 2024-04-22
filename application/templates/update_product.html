@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <head>
+    
+    <style>
+       .username-text {
+            color: rgb(36, 153, 36);
+        } 
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <p class="navbar-band username-text">Welcome, {{ username }} Admin!</p>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#ajoy">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse " id="ajoy">
+                <ul class="navbar-nav" style="margin-left: auto;">
+                    <li class="nav-item">
+                        <!-- <p class="username-text">Welcome, {{ username }} Admin!</p> -->
+                    </li>
+                
+                    <button class="btn btn-outline-success ml-auto" style="border-radius: 5px; padding: 0px 10px; margin-right: 9px;">
+                        <a class="nav-link" href="{{url_for('summary')}}">Summary</a>
+                    </button>
+                    <button class="btn btn-outline-success ml-2" style="border-radius: 5px; padding: 0px 14px;">
+
+                        <a class="nav-link" href="{{ url_for('admin_logout') }}">Logout</a>
+                    </button>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% for product, category in product_category %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-lg-5 m-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title" style="text-align: center;">Add a Product</h1>
+                </div>
+                <div class="card-body">
+                    <form action="{{url_for('update_product', id = product.id)}}" method="POST">
+                        <div class="form-group">
+                            <label for="name">Product Name:</label><br>
+                            <input type="text" class="form-control" id="name" name="name" value="{{product.name}}"  required>
+                        </div>
+                        <!-- <br> -->
+                        <div class="form-group">
+                            <label for="price">Price:</label>
+                            <input type="number" class="form-control fixed" id="price" name="price" value="{{product.price}}"  required>
+                            
+                        </div>
+                    
+                        <div class="form-group">
+                            <label for="inputGroupSelect01">Choose unit per quantity:</label>
+                            <select class="form-control" id="inputGroupSelect01" name="unit" required>
+                                <option value="pics" {% if product.unit == 'pics' %}selected{% endif %}>Rs/pics</option>
+                                <option value="dozen" {% if product.unit == 'dozen' %}selected{% endif %}>Rs/dozen</option>
+                                <option value="litre" {% if product.unit == 'litre' %}selected{% endif %}>Rs/litre</option>
+                                <option value="gram" {% if product.unit == 'gram' %}selected{% endif %}>Rs/gram</option>
+                                <option value="kg" {% if product.unit == 'kg' %}selected{% endif %}>Rs/kg</option>
+                                <option value="other" {% if product.unit == 'other' %}selected{% endif %}>Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" value="{{product.quantity}}"  required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="category">Category Name:</label>
+                            <input type="text" class="form-control" id="category" name="category" value="{{category.name}}" disabled>
+                            <input type="hidden" name="category_hidden" value="{{category.name}}">
+                        </div>
+                        
+                        
+                        
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea class="form-control" style="height: 119px;" id="description" name="description"  required>{{ product.description }}</textarea>
+                        </div>
+                        
+                        <br>
+                        <button type="submit" class="btn btn-primary form-control">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="row justify-content-center mt-3">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-lg-5">
+            {% for category, message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ message|safe }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% endwith %}
+
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> -->
+</body>
+</html>
+
+
+
+
+    
+
+
+
+

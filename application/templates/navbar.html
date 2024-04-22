@@ -1,0 +1,64 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grocory App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        .username-text {
+            color: rgb(36, 153, 36);
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename ='style_2.css')}}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <p class="username-text">Welcome to the Grocery App</p>
+                    </li>
+                </ul>
+        
+                <div class="input-group w-50 mx-auto">
+                    <!-- <input type="text" class="form-control" placeholder="Search" name="p_search" aria-label="Search" style="width: 65%; border-radius: 3px;">
+                    <button class="btn btn-outline-success ml-2 " type="submit" style="width: 15%; margin-left: 5px;">Search</button>
+                -->
+                    <form action="{{url_for('search')}}" method="POST" class="input-group w-50 mx-auto">
+                        <input type="text" class="form-control" placeholder="Search" name="p_search" aria-label="Search" style="width: 65%; border-radius: 3px;">
+                        <button class="btn btn-outline-success ml-2 " type="submit" style=" margin-left: 5px; border-radius: 5px;">Search</button>
+                    </form>
+                </div>
+        
+                <!-- <button class="btn btn-outline-success ml-auto" style="border-radius: 5px;">
+                    <a class="nav-link" href="#">My Cart</a>
+                </button> -->
+
+                <button class="btn btn-outline-success ml-2" style="border-radius: 5px; margin-left: 9px;">
+                    <a class="nav-link" href="{{url_for('user_login')}}">Login</a>
+                </button>
+                <button class="btn btn-outline-success ml-2" style="border-radius: 5px; margin-left: 9px;">
+        
+                    <a class="nav-link" href="{{ url_for('user_register') }}">register</a>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+
+
+    {% block content %}
+
+    {% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+</html>
+

@@ -1,0 +1,99 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename ='style_2.css')}}">
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <!-- Left side of the navbar - Username -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <p class="username-text">Welcome, {{ username }}</p>
+                </li>
+            </ul>
+
+            <!-- Center of the navbar - Search and Search Button -->
+            <div class="input-group w-50 mx-auto">
+               
+                <form action="{{url_for('search')}}" method="POST" class="input-group w-50 mx-auto">
+                    <input type="text" class="form-control" placeholder="Search" name="p_search" aria-label="Search" style="width: 65%; border-radius: 3px;">
+                    <button class="btn btn-outline-success ml-2 " type="submit" style=" margin-left: 5px; border-radius: 5px;">Search</button>
+                </form>
+            </div>
+
+            <button class="btn btn-outline-success ml-auto" style="border-radius: 5px;">
+                <a class="nav-link" href="{{url_for('homepage')}}">Home</a>
+            </button>
+            <button class="btn btn-outline-success ml-auto" style="border-radius: 5px; margin-left: 9px;">
+                <a class="nav-link" href="#">Profile</a>
+            </button>
+            <button class="btn btn-outline-success ml-2" style="border-radius: 5px; margin-left: 9px;">
+
+                <a class="nav-link" href="{{ url_for('user_logout') }}">Logout</a>
+            </button>
+        </div>
+    </nav>
+    <br><br>
+    {% if cart_products %}
+        <form action="{{url_for('buying_product', id = user.id)}}" method = 'POST'>
+            <div class="container">
+                <div class="row">
+                    {% for product, category in cart_products %}
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="product-details">
+                                        <h5 class="card-title">{{product.name}} - {{category.name}}</h5>
+                                        <p class="card-text">Quantity: {{product.quantity}}</p>
+                                        <p class="card-text">Price: {{product.price}}</p>
+                                        <a href="{{url_for('update_product_cart', id = product.id)}}" class="btn btn-success">Edit</a>
+                                        <a href="{{url_for('delete_product_cart', id = product.id)}}" class="btn btn-danger" onclick="return confirm('Are you sure, you want to delete {{product.name}} product ?')">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        {% endfor %} 
+                </div>
+            </div>
+
+            <div class="total-price">
+                <p style="margin-left: 34px; font-size: 27px;"><b style="font-size: 30px;">Total Price </b> : {{sum_price}}</p>
+            </div>
+            <div class="total-btn">
+                <button type="submit" class="btn btn-success">Buy Now</button>
+            </div>
+        </form>
+    {% else %}
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-12 center-contents text-center">
+                <h3>No product added. Please add the product</h3>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="row justify-content-center mt-3">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-lg-5">
+            {% for category, message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% endwith %}
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+</body>
+</html>
